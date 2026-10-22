@@ -1,0 +1,111 @@
+:root {
+  --font-heading:
+    "Inter", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3",
+    "Noto Sans JP", sans-serif;
+  --font-body:
+    "Lato", "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3", "Noto Sans JP",
+    sans-serif;
+  --hero-bg-height: max(100vh, 850px);
+  --header-height: 90px;
+  --spacer-start-height: calc(var(--hero-bg-height) - var(--header-height));
+  --spacer-end-height: 700px;
+}
+
+@media (max-width: 1280px) {
+  :root {
+    --hero-bg-height: max(80vh, 650px);
+    --header-height: 80px;
+    --spacer-start-height: calc(var(--hero-bg-height) - var(--header-height));
+    --spacer-end-height: 500px;
+  }
+}
+
+@media (max-width: 840px) {
+  :root {
+    --hero-bg-height: max(50vh, 360px);
+    --header-height: 60px;
+    --spacer-start-height: calc(var(--hero-bg-height) - var(--header-height));
+    --spacer-end-height: 200px;
+  }
+}
+
+@media (max-width: 540px) {
+  :root {
+    --hero-bg-height: 450px;
+    --header-height: 50px;
+    --spacer-start-height: 400px;
+    --spacer-end-height: 280px;
+  }
+}
+
+body {
+  font-family: var(--font-body);
+  font-feature-settings: "palt" 1;
+  color: #242528;
+  margin: 0;
+  padding: 0;
+}
+
+.font-heading {
+  font-family: var(--font-heading);
+  font-feature-settings: "palt" 1;
+}
+
+.font-body {
+  font-family: var(--font-body);
+  font-feature-settings: "palt" 1;
+}
+
+.hero-bg {
+  height: var(--hero-bg-height);
+}
+
+.site-header {
+  height: var(--header-height);
+}
+
+@keyframes headerSlideDown {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.animate-header-appear {
+  transform: translateY(-100%);
+  animation: headerSlideDown 1000ms cubic-bezier(0.22, 1, 0.36, 1) 2000ms
+    forwards;
+}
+
+@keyframes spacerShrink {
+  0% {
+    height: var(--spacer-start-height);
+  }
+  100% {
+    height: var(--spacer-end-height);
+  }
+}
+
+.hero-spacer {
+  height: var(--spacer-start-height);
+  animation: spacerShrink 800ms cubic-bezier(0.22, 1, 0.36, 1) 2000ms forwards;
+}
+
+@media (max-width: 840px) and (min-width: 541px) {
+  .hero-spacer {
+    animation-delay: 1000ms;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-header-appear {
+    transform: none;
+    animation: none;
+  }
+  .hero-spacer {
+    animation: none;
+    height: var(--spacer-end-height);
+  }
+}
